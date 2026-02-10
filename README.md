@@ -1,0 +1,2 @@
+# soil-quality-ml
+ML FOR SOIL QUALITY USING SENSOR &amp; SATELLITE 
