@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction History</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+
+<header class="bg-green-700 text-white p-4 text-center text-2xl font-bold">
+    📊 Prediction History
+</header>
+
+<nav class="bg-white shadow p-3 flex justify-center gap-6">
+    <a href="/" class="hover:text-green-700">Home</a>
+    <a href="/predict" class="hover:text-green-700">Prediction</a>
+    <a href="/history" class="text-green-700 font-semibold">History</a>
+    <a href="/dataset" class="hover:text-green-700">Dataset</a>
+    <a href="/settings" class="hover:text-green-700">Settings</a>
+</nav>
+
+<main class="max-w-5xl mx-auto mt-8 bg-white p-8 rounded shadow">
+
+    <h2 class="text-xl font-bold mb-6 text-center">
+        Previous Predictions
+    </h2>
+
+    <!-- Prediction History Table -->
+    <div class="overflow-x-auto mb-10">
+        <table class="w-full border border-gray-300">
+            <thead class="bg-green-700 text-white">
+                <tr>
+                    <th class="border p-2">Date</th>
+                    <th class="border p-2">Input Summary</th>
+                    <th class="border p-2">Prediction</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hover:bg-gray-50">
+                    <td class="border p-2">2026-01-18</td>
+                    <td class="border p-2">
+                        pH=6.5, Temp=29°C, Moisture=30%, N=26, P=33, K=42
+                    </td>
+                    <td class="border p-2 font-semibold text-green-700">
+                        High Quality
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Charts Section -->
+    <h2 class="text-xl font-bold mb-4 text-center">
+        Model Performance
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- Accuracy Chart -->
+        <div class="bg-gray-50 p-4 rounded shadow">
+            <h3 class="text-center font-semibold mb-2">
+                Training vs Validation Accuracy
+            </h3>
+            <canvas id="accuracyChart"></canvas>
+        </div>
+
+        <!-- Loss Chart -->
+        <div class="bg-gray-50 p-4 rounded shadow">
+            <h3 class="text-center font-semibold mb-2">
+                Training vs Validation Loss
+            </h3>
+            <canvas id="lossChart"></canvas>
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+    // Accuracy Chart
+    new Chart(document.getElementById("accuracyChart"), {
+        type: "line",
+        data: {
+            labels: ["Epoch 1", "Epoch 2", "Epoch 3", "Epoch 4", "Epoch 5"],
+            datasets: [
+                {
+                    label: "Training Accuracy",
+                    data: [0.78, 0.82, 0.86, 0.89, 0.92],
+                    borderWidth: 2,
+                    tension: 0.3
+                },
+                {
+                    label: "Validation Accuracy",
+                    data: [0.75, 0.80, 0.83, 0.85, 0.88],
+                    borderWidth: 2,
+                    tension: 0.3
+                }
+            ]
+        }
+    });
+
+    // Loss Chart
+    new Chart(document.getElementById("lossChart"), {
+        type: "line",
+        data: {
+            labels: ["Epoch 1", "Epoch 2", "Epoch 3", "Epoch 4", "Epoch 5"],
+            datasets: [
+                {
+                    label: "Training Loss",
+                    data: [0.55, 0.42, 0.34, 0.28, 0.22],
+                    borderWidth: 2,
+                    tension: 0.3
+                },
+                {
+                    label: "Validation Loss",
+                    data: [0.60, 0.48, 0.39, 0.33, 0.29],
+                    borderWidth: 2,
+                    tension: 0.3
+                }
+            ]
+        }
+    });
+</script>
+
+</body>
+</html>
